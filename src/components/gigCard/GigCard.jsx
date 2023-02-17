@@ -4,7 +4,7 @@ import "./GigCard.scss";
 
 const GigCard = ({ item }) => {
   return (
-    <Link to='/gig/123'>
+    <Link to='/gig/123' className='link'>
       <div className='gigCard'>
         <img src={item.img} alt='' />
         <div className='info'>
@@ -19,11 +19,14 @@ const GigCard = ({ item }) => {
           </div>
         </div>
         <hr />
-        <div className='details'>
+        <div className='detail'>
           <img src='./img/heart.png' alt='' />
           <div className='price'>
             <span>STARTING AT</span>
-            <h2>${item.price}</h2>
+            <h2>
+              $ {item.price}
+              <sup>99</sup>
+            </h2>
           </div>
         </div>
       </div>
