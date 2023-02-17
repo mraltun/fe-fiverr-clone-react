@@ -14,13 +14,11 @@ const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", isActive);
-
     return () => {
       window.removeEventListener("scroll", isActive);
     };
   }, []);
 
-  // Temporary user until backend
   const currentUser = {
     id: 1,
     username: "Murat",
@@ -31,8 +29,8 @@ const Navbar = () => {
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
       <div className='container'>
         <div className='logo'>
-          <Link to='/' className='link'>
-            <span className='text'>fiverr</span>
+          <Link className='link' to='/'>
+            <span className='text'>Fiverr</span>
           </Link>
           <span className='dot'>.</span>
         </div>
@@ -40,19 +38,17 @@ const Navbar = () => {
           <span>Fiverr Business</span>
           <span>Explore</span>
           <span>English</span>
-          <span>Sign in</span>
           {!currentUser?.isSeller && <span>Become a Seller</span>}
-          {!currentUser && <button>Join</button>}
-          {currentUser && (
+          {currentUser ? (
             <div className='user' onClick={() => setOpen(!open)}>
               <img
-                src='https://images.pexels.com/photos/982300/pexels-photo-982300.jpeg?auto=compress&cs=tinysrgb&w=1600'
+                src='https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600'
                 alt=''
               />
               <span>{currentUser?.username}</span>
               {open && (
                 <div className='options'>
-                  {currentUser?.isSeller && (
+                  {currentUser.isSeller && (
                     <>
                       <Link className='link' to='/mygigs'>
                         Gigs
@@ -74,45 +70,51 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+          ) : (
+            <>
+              <span>Sign in</span>
+              <Link className='link' to='/register'>
+                <button>Join</button>
+              </Link>
+            </>
           )}
         </div>
       </div>
-      {active ||
-        (pathname !== "/" && (
-          <>
-            <hr />
-            <div className='menu'>
-              <Link className='link menuLink' to='/'>
-                Graphics & Design
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Video & Animation
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Writing & Translation
-              </Link>
-              <Link className='link menuLink' to='/'>
-                AI Services
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Digital Marketing
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Music & Audio
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Programming & Tech
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Business
-              </Link>
-              <Link className='link menuLink' to='/'>
-                Lifestyle
-              </Link>
-            </div>
-            <hr />
-          </>
-        ))}
+      {(active || pathname !== "/") && (
+        <>
+          <hr />
+          <div className='menu'>
+            <Link className='link menuLink' to='/'>
+              Graphics & Design
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Video & Animation
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Writing & Translation
+            </Link>
+            <Link className='link menuLink' to='/'>
+              AI Services
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Digital Marketing
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Music & Audio
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Programming & Tech
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Business
+            </Link>
+            <Link className='link menuLink' to='/'>
+              Lifestyle
+            </Link>
+          </div>
+          <hr />
+        </>
+      )}
     </div>
   );
 };
